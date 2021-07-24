@@ -83,7 +83,11 @@ public class AccidenteDAO extends Conexion implements Crud {
 
     @Override
     public boolean actualizarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            
+        } catch (Exception e) {
+        }
+        return operacion;
     }
 
     @Override
