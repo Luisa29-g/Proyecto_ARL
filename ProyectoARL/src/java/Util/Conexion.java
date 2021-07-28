@@ -21,7 +21,7 @@ public class Conexion {
         driver = "com.mysql.jdbc.Driver";
         user="root";
         password="";
-        db="proyecto_arl";//nombre de la base de datos
+        db="Proyecto_Arl";//nombre de la base de datos
         puerto="3306";
         url="jdbc:mysql://localhost:"+puerto+"/"+db;
         
