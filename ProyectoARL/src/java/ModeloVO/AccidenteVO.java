@@ -17,7 +17,7 @@ public class AccidenteVO {
     
 
 
-    public AccidenteVO(String idAcdidente, String tipoAccidente, String fechaHora, String dia, String jornada, String laborHabitual, String tiempoPA, String cantHoras, String cantMinutos, String empresa, String causaMuerte, String descripcion) {
+    public AccidenteVO(String idAccididente, String tipoAccidente, String fechaHora, String dia, String jornada, String laborHabitual, String tiempoPA, String cantHoras, String cantMinutos, String empresa, String causaMuerte, String descripcion) {
         this.idAccididente= idAccididente;
         this.tipoAccidente = tipoAccidente;
         this.fechaHora = fechaHora;
@@ -39,7 +39,7 @@ public class AccidenteVO {
         return idAccididente;
     }
 
-    public void setIdAcdidente(String idAcdidente) {
+    public void setIdAcdidente(String idAccididente) {
         this.idAccididente = idAccididente;
     }
 

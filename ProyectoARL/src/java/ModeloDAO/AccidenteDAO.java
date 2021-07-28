@@ -31,7 +31,7 @@ public class AccidenteDAO extends Conexion implements Crud {
             laborHabitual="", tiempoPA="", cantHoras="", cantMinutos="", empresa="", causaMuerte="",
             descripcion="";
      
-     private AccidenteDAO(AccidenteVO aciVO){
+     public AccidenteDAO(AccidenteVO aciVO){
      super();
          try {
      Conexion = this.obtenerConexion();
@@ -45,6 +45,7 @@ public class AccidenteDAO extends Conexion implements Crud {
      cantHoras= aciVO.getCantHoras();
      cantMinutos= aciVO.getCantMinutos();
      empresa= aciVO.getEmpresa();
+     causaMuerte= aciVO.getCausaMuerte();
      descripcion= aciVO.getDescripcion();
      
          } catch (Exception e) {
@@ -55,7 +56,9 @@ public class AccidenteDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
            try {
-            sql= "insert into accidente values(?,?,?,?,?,?,?,?,?,?)";
+            sql= "insert into accidente (tipoAccidente, fechaHora, dia, jornada,"
+                    + " laborHabitual, tiempoPA, cantHoras, cantMinutos, empresa,causaMuerte, descripcion )"
+                    + " values(?,?) values(?,?,?,?,?,?,?,?,?,?)";
              puente= Conexion.prepareStatement(sql);
              puente.setString(1, tipoAccidente);
              puente.setString(2, fechaHora);
@@ -66,7 +69,8 @@ public class AccidenteDAO extends Conexion implements Crud {
              puente.setString(7, cantHoras);
              puente.setString(8, cantMinutos);
              puente.setString(9, empresa);
-             puente.setString(10, descripcion);
+             puente.setString(10, causaMuerte);
+             puente.setString(11, descripcion);
              puente.executeUpdate();
              operacion=true;
              
@@ -83,9 +87,33 @@ public class AccidenteDAO extends Conexion implements Crud {
 
     @Override
     public boolean actualizarRegistro() {
-        try {
-            
-        } catch (Exception e) {
+       try {
+            sql="user update set accidente tipoAccidente=?, fechaHora=?,"
+                    + " dia=?, jornada=?, laborHabitual=?, tiempoPA=?,"
+                    + " cantHoras=?, cantMinutos=?, empresa=?, causaMuerte=?,"
+                    + "where idAccididente=?";
+            puente= Conexion.prepareStatement(sql);
+             puente.setString(1, tipoAccidente);
+             puente.setString(2, fechaHora);
+             puente.setString(3, dia);
+             puente.setString(4, jornada);
+             puente.setString(5,laborHabitual);
+             puente.setString(6, tiempoPA);
+             puente.setString(7, cantHoras);
+             puente.setString(8, cantMinutos);
+             puente.setString(9, empresa);
+             puente.setString(10, causaMuerte);
+             puente.setString(11, descripcion);
+             puente.setString(12, idAccididente);
+             puente.executeUpdate();
+             operacion=true;
+        } catch (SQLException e) {
+             Logger.getLogger(AccidenteDAO.class.getName()).log(Level.SEVERE, null, e);
+        }finally{
+            try {
+                this.cerrarConexion();
+            } catch (SQLException e) {
+            }
         }
         return operacion;
     }
